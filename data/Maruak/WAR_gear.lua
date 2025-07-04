@@ -1,0 +1,130 @@
+function init_weaponns()
+    --デフォルト武器を設定
+    send_command('gs c set MainWeapons Naegling')
+    send_command('gs c set SubWeapons BlurredShield')
+end
+
+function init_gear_sets()
+    --ロックスタイル番号
+    lockstyleset = 61
+
+    --武器
+    gear.Laphria = { name = "ラフリア" }
+    gear.Chango = { name = "シャンゴル" }
+    gear.Lycurgos = { name = "ライカーゴス" }
+    gear.ShiningOne = { name = "シャイニングワン" }
+    gear.Naegling = { name = "ネイグリング" }
+    gear.LoxoticMace = { name = "ロクソテクメイス+1" }
+    gear.IkengasAxe = { name = "イケンガアクス" }
+    gear.Malevolence = { name = "マレヴォレンス" }
+    gear.UtuGrip = { name = "ウトゥグリップ" }
+    gear.BlurredShield = { name = "ブラーシールド+1" }
+    gear.AdapaShield = { name = "アダパシールド" }
+
+    --待機装備
+    sets.idle = {
+        ammo = "ストンチタスラム+1",
+        head = "無の面",
+        body = "ＢＩロリカ+3",
+        hands = { name = "サクパタガントレ", augments = { 'Path: A', } },
+        legs = "ＢＩクウィス+3",
+        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
+        neck = "上級近衛騎士カラー",
+        waist = "無の腰当",
+        left_ear = { name = "ズワゾピアス", augments = { 'Path: A', } },
+        right_ear = "インフューズピアス",
+        left_ring = "シュネデックリング",
+        right_ring = "ローラーリング",
+        back = { name = "シコルマント", augments = { 'DEX+30', 'Accuracy+20 Attack+20', '"Double Attack"+10', 'Phys. dmg. taken-10%', } },
+    }
+
+    --走り回る用
+    sets.Kiting = { left_ring = "シュネデックリング", }
+
+    --抜刀装備
+    sets.engaged = {
+        ammo = { name = "コイストボダー", augments = { 'Path: A', } },
+        head = "ＢＩマスク+3",
+        body = "ＢＩロリカ+3",
+        hands = { name = "サクパタガントレ", augments = { 'Path: A', } },
+        legs = "ＢＩクウィス+3",
+        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
+        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        waist = "イオスケハベルト+1",
+        left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
+        right_ear = { name = "ボイイピアス+1"}, -- TODO: augments
+        left_ring = "シーリチリング+1",
+        right_ring = "シーリチリング+1",
+        back = { name = "シコルマント", augments = { 'DEX+30', 'Accuracy+20 Attack+20', '"Double Attack"+10', 'Phys. dmg. taken-10%', } },
+    }
+
+    sets.engaged.PDT = {
+        ammo = { name = "コイストボダー", augments = { 'Path: A', } },
+        head = "ＢＩマスク+3",
+        body = "アダマンアーマー",
+        hands = "ＡＧマフラ+3",
+        legs = "サクパタクウィス",
+        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
+        neck = "上級近衛騎士カラー",
+        waist = "イオスケハベルト+1",
+        left_ear = { name = "ズワゾピアス", augments = { 'Path: A', } },
+        right_ear = "スリオスイヤリング",
+        left_ring = "フォテファイリング",
+        right_ring = "シーリチリング+1",
+        back = { name = "シコルマント", augments = { 'DEX+30', 'Accuracy+20 Attack+20', '"Double Attack"+10', 'Phys. dmg. taken-10%', } },
+    }
+
+    --監視用バフ
+    -- TODO
+
+    --即時発動系
+    sets.precast.JA['マイティストライク'] = { hand = "ＡＧマフラ+3" }
+    sets.precast.JA['バーサク'] = { body = "ＰＭロリカ+2", feet = "ＡＧカリガ+3", back = "シコルマント" }
+    sets.precast.JA['ディフェンダー'] = { hand = "ＡＧマフラ+3" }
+    sets.precast.JA['ウォークライ'] = { head = "ＡＧマスク+4" }
+    sets.precast.JA['トマホーク'] = { feet = "ＡＧカリガ+3"}
+    sets.precast.JA['ブラッドレイジ'] = { body = "ＢＩロリカ+3"}
+
+    --FC
+    -- TODO
+
+    --WSダメージ
+    sets.precast.WS.Damage = {
+        ammo = "ノブキエリ",
+        head = "ＡＧマスク+4",
+        body = { name = "ニャメメイル", augments = { 'Path: B', } },
+        hands = "ＢＩマフラ+3",
+        legs = "ＢＩクウィス+3",
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
+        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
+        legt_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
+        right_ear = "スラッドピアス",
+        left_ring = "コーネリアリング",
+        right_ring = "王将の指輪",
+        back = { name = "シコルマント", augments = { 'STR+30', 'Accuracy+20 Attack+20', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
+    }
+
+    --WS魔攻
+    sets.precast.WS.Magic = {
+        ammo = "ノブキエリ",
+        head = { name = "ニャメヘルム", augments = { 'Path: B', } },
+        body = { name = "ニャメメイル", augments = { 'Path: B', } },
+        hands={ name="ニャメガントレ", augments={'Path: B',}},
+        legs = { name = "ニャメフランチャ", augments = { 'Path: B', } },
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
+        neck = "シビルスカーフ",
+        waist = "オルペウスサッシュ",,
+        left_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
+        right_ear = "フリオミシピアス",
+        left_ring = "コーネリアリング",
+        right_ring = "エパミノダスリング",
+        back = { name = "シコルマント", augments = { 'STR+30', 'Accuracy+20 Attack+20', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
+    }
+
+    --WSモクシャ
+    -- TODO
+
+    --共通WS定義読み込み
+    init_weapon_skill()
+end
