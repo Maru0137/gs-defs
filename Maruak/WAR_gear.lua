@@ -31,11 +31,11 @@ function init_gear_sets()
         feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
         neck = "上級近衛騎士カラー",
         waist = "無の腰当",
-        left_ear = { name = "ズワゾピアス", augments = { 'Path: A', } },
+        left_ear = { name = "ズワゾピアス+1", augments = { 'Path: A', } },
         right_ear = "インフューズピアス",
         left_ring = "シュネデックリング",
         right_ring = "ローラーリング",
-        back = { name = "シコルマント", augments = { 'DEX+30', 'Accuracy+20 Attack+20', '"Double Attack"+10', 'Phys. dmg. taken-10%', } },
+        back = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } },
     }
 
     --走り回る用
@@ -52,10 +52,10 @@ function init_gear_sets()
         neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
         waist = "イオスケハベルト+1",
         left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
-        right_ear = { name = "ボイイピアス+1"}, -- TODO: augments
+        right_ear = { name = "ボイイピアス+1" }, -- TODO: augments
         left_ring = "シーリチリング+1",
         right_ring = "シーリチリング+1",
-        back = { name = "シコルマント", augments = { 'DEX+30', 'Accuracy+20 Attack+20', '"Double Attack"+10', 'Phys. dmg. taken-10%', } },
+        back = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } },
     }
 
     sets.engaged.PDT = {
@@ -67,11 +67,11 @@ function init_gear_sets()
         feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
         neck = "上級近衛騎士カラー",
         waist = "イオスケハベルト+1",
-        left_ear = { name = "ズワゾピアス", augments = { 'Path: A', } },
+        left_ear = { name = "ズワゾピアス+1", augments = { 'Path: A', } },
         right_ear = "スリオスイヤリング",
         left_ring = "フォテファイリング",
         right_ring = "シーリチリング+1",
-        back = { name = "シコルマント", augments = { 'DEX+30', 'Accuracy+20 Attack+20', '"Double Attack"+10', 'Phys. dmg. taken-10%', } },
+        back = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } },
     }
 
     --監視用バフ
@@ -82,8 +82,8 @@ function init_gear_sets()
     sets.precast.JA['バーサク'] = { body = "ＰＭロリカ+2", feet = "ＡＧカリガ+3", back = "シコルマント" }
     sets.precast.JA['ディフェンダー'] = { hand = "ＡＧマフラ+3" }
     sets.precast.JA['ウォークライ'] = { head = "ＡＧマスク+4" }
-    sets.precast.JA['トマホーク'] = { feet = "ＡＧカリガ+3"}
-    sets.precast.JA['ブラッドレイジ'] = { body = "ＢＩロリカ+3"}
+    sets.precast.JA['トマホーク'] = { feet = "ＡＧカリガ+3" }
+    sets.precast.JA['ブラッドレイジ'] = { body = "ＢＩロリカ+3" }
 
     --FC
     -- TODO
@@ -98,8 +98,24 @@ function init_gear_sets()
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
         waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
-        legt_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
-        right_ear = "スラッドピアス",
+        left_ear = "スラッドピアス",
+        right_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
+        left_ring = "コーネリアリング",
+        right_ring = "王将の指輪",
+        back = { name = "シコルマント", augments = { 'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
+    }
+
+    sets.precast.WS.Critical = {
+        ammo = "イェットシーラ+1",
+        head = "ＡＧマスク+4",
+        body = { name = "ニャメメイル", augments = { 'Path: B', } },
+        hands = "ＢＩマフラ+3",
+        legs = { name = "ニャメフランチャ", augments = { 'Path: B' } },
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
+        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
+        left_ear = "スラッドピアス",
+        right_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
         left_ring = "コーネリアリング",
         right_ring = "王将の指輪",
         back = { name = "シコルマント", augments = { 'STR+30', 'Accuracy+20 Attack+20', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
@@ -110,13 +126,13 @@ function init_gear_sets()
         ammo = "ノブキエリ",
         head = { name = "ニャメヘルム", augments = { 'Path: B', } },
         body = { name = "ニャメメイル", augments = { 'Path: B', } },
-        hands={ name="ニャメガントレ", augments={'Path: B',}},
+        hands = { name = "ニャメガントレ", augments = { 'Path: B', } },
         legs = { name = "ニャメフランチャ", augments = { 'Path: B', } },
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
-        neck = "シビルスカーフ",
-        waist = "オルペウスサッシュ",,
-        left_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
-        right_ear = "フリオミシピアス",
+        neck = "ベーテルペンダント",
+        waist = "オルペウスサッシュ",
+        left_ear = "フリオミシピアス",
+        right_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
         left_ring = "コーネリアリング",
         right_ring = "エパミノダスリング",
         back = { name = "シコルマント", augments = { 'STR+30', 'Accuracy+20 Attack+20', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
@@ -127,4 +143,7 @@ function init_gear_sets()
 
     --共通WS定義読み込み
     init_weapon_skill()
+
+    -- 個別WS定義
+    -- TODO
 end
