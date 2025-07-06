@@ -10,6 +10,7 @@ function user_setup()
     define_roll_values()                                                --ロール情報   
     init_weaponns()                                                     --武器初期化
     init_custom_spell_map()                                             --スペルマップ定義再構築    
+    init_gears()
 
     send_command('input /chatmode party')                               --チャットモード変更
     -- send_command('wait 4; gs c set IdleMode Normal; gs c lockstyleset;')--待機装備着替え後にロックスタイル固定
@@ -590,3 +591,9 @@ function init_weapon_skill()
     sets.precast.WS["ラストスタンド"] = { Normal=sets.precast.WS.Range,SubtleBlow=set_combine(sets.precast.WS.Range,sets.precast.WS.SubtleBlow)}
     sets.precast.WS["ジ・エンド"] = { Normal=sets.precast.WS.Range,SubtleBlow=set_combine(sets.precast.WS.Range,sets.precast.WS.SubtleBlow)}
 end
+
+function init_gears()
+    gear.AmbusMantle = {}
+    gear.MoonshadeEarring = { name = "胡蝶のイヤリング", augments = { '"Mag.Atk.Bns."+4', 'TP Bonus +250', } }
+end
+        
