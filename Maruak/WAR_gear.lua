@@ -21,6 +21,14 @@ function init_gear_sets()
     gear.BlurredShield = { name = "ブラーシールド+1" }
     gear.AdapaShield = { name = "アダパシールド" }
 
+    -- AmbusMantles
+    gear.AmbusMantle.AADA = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } }
+    gear.AmbusMantle.WSSTR = { name = "シコルマント", augments = { 'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } }
+    gear.AmbusMantle.WSVIT = { name = "シコルマント", augments = { 'VIT+20', 'Accuracy+20 Attack+20', 'VIT+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } }
+
+    -- SortieEaring
+    gear.SortieEaring = { name = "ボイイピアス+1", augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+13', 'Mag. Acc.+13', 'Crit.hit rate+4', } }
+
     --待機装備
     sets.idle = {
         ammo = "ストンチタスラム+1",
@@ -35,7 +43,7 @@ function init_gear_sets()
         right_ear = "インフューズピアス",
         left_ring = "シュネデックリング",
         right_ring = "ローラーリング",
-        back = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } },
+        back = gear.AmbusMantle.AADA
     }
 
     --走り回る用
@@ -52,10 +60,10 @@ function init_gear_sets()
         neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
         waist = "イオスケハベルト+1",
         left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
-        right_ear = { name = "ボイイピアス+1" }, -- TODO: augments
+        right_ear = gear.SortieEaring,
         left_ring = "シーリチリング+1",
         right_ring = "シーリチリング+1",
-        back = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } },
+        back = gear.AmbusMantle.AADA
     }
 
     sets.engaged.PDT = {
@@ -71,7 +79,7 @@ function init_gear_sets()
         right_ear = "スリオスイヤリング",
         left_ring = "フォテファイリング",
         right_ring = "シーリチリング+1",
-        back = { name = "シコルマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } },
+        back = gear.AmbusMantle.AADA
     }
 
     --監視用バフ
@@ -97,12 +105,12 @@ function init_gear_sets()
         legs = "ＢＩクウィス+3",
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
-        waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
-        left_ear = "スラッドピアス",
-        right_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
+        waist = { name = "セールフィベルト+1", augments = { 'Path: A' } },
+        left_ear = gear.MoonshadeEaring,
+        right_ear = "スラッドピアス",
         left_ring = "コーネリアリング",
         right_ring = "王将の指輪",
-        back = { name = "シコルマント", augments = { 'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
+        back = gear.AmbusMantle.WSSTR
     }
 
     sets.precast.WS.Critical = {
@@ -114,11 +122,11 @@ function init_gear_sets()
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
         waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
-        left_ear = "スラッドピアス",
-        right_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
+        left_ear = gear.MoonshadeEaring,
+        right_ear = "スラッドピアス",
         left_ring = "コーネリアリング",
         right_ring = "王将の指輪",
-        back = { name = "シコルマント", augments = { 'STR+30', 'Accuracy+20 Attack+20', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
+        back = gear.AmbusMantle.WSSTR
     }
 
     --WS魔攻
@@ -131,11 +139,28 @@ function init_gear_sets()
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "ベーテルペンダント",
         waist = "オルペウスサッシュ",
-        left_ear = "フリオミシピアス",
-        right_ear = { name = "胡蝶のイヤリング", augments = { 'Magic Attack+4', 'TP Bonus +250', } },
+        left_ear = gear.MoonshadeEaring,
+        right_ear = "フリオミシピアス",
         left_ring = "コーネリアリング",
         right_ring = "エパミノダスリング",
-        back = { name = "シコルマント", augments = { 'STR+30', 'Accuracy+20 Attack+20', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } },
+        back = gear.AmbusMantle.WSSTR
+    }
+
+    -- WS魔命
+    sets.precast.WS.MagicAcc = {
+        ammo = "ペムフレドタスラム",
+        head = "ＢＩマスク+3",
+        body = "ＢＩロリカ+3",
+        hands = "ＢＩマフラ+3",
+        legs = "ＢＩクウィス+3",
+        feet = "ＢＩカリガ+3",
+        neck = "無の喉輪",
+        waist = "無の腰当",
+        left_ear = gear.MoonshadeEaring,
+        right_ear = gear.SortieEaring,
+        left_ring = "コーネリアリング",
+        right_ring = "エパミノダスリング",
+        back = "無の外装"
     }
 
     --WSモクシャ
@@ -145,5 +170,5 @@ function init_gear_sets()
     init_weapon_skill()
 
     -- 個別WS定義
-    -- TODO
+    sets.precast.WS["アップヒーバル"].Normal = set_combine(sets.precast.WS.Damage, { back = gear.AmbusMantle.WSVIT })
 end

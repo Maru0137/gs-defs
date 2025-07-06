@@ -22,7 +22,7 @@ function job_setup()
     state.IdleMode:options('Normal')
 
     -- gs c cycle WeaponskillMode
-    state.WeaponskillMode:options('Normal', 'SubtleBlow')
+    state.WeaponskillMode:options('Normal', 'Accuracy', 'SubtleBlow')
 
     -- gs c cycle MainWeapons
     state.MainWeapons = M { 'Laphria', 'Chango', 'Lycurgos', 'ShiningOne', 'Naegling', 'LoxoticMace', 'IkengasAxe', 'Malevolence' }
