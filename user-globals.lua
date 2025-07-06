@@ -4,7 +4,7 @@
 function user_setup()
     state.Buff['睡眠']  = buffactive['睡眠'] or false                   --監視するバフ・デバフ
     
-    include(player.name .. '/weather_obi')                              --属性帯ロード    
+    -- include(player.name .. '/weather_obi')                              --属性帯ロード    
     -- include('smn_avatar')                                               --召喚定義ファイルロード
     -- include('organizer-lib') 
     define_roll_values()                                                --ロール情報   
