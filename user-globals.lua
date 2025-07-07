@@ -11,6 +11,7 @@ function user_setup()
     init_weaponns()                                                     --武器初期化
     init_custom_spell_map()                                             --スペルマップ定義再構築    
     init_gears()
+    init_weapon_skill_sets()
 
     send_command('input /chatmode party')                               --チャットモード変更
     -- send_command('wait 4; gs c set IdleMode Normal; gs c lockstyleset;')--待機装備着替え後にロックスタイル固定
@@ -344,6 +345,341 @@ function display_roll_info(spell)
         windower.add_to_chat(2, spell.name .. ' [' ..desc ..'] Lucky=' .. lucky .. ' '.. ' Unluck='.. unlucky)
     end
 end
+
+function init_weapon_skill_sets()
+    -- 物理: sets.precast.WS.phys
+        -- 近接: sets.precast.WS.phys.melee
+            -- 初段倍率: sets.precast.WS.phys.melee.first
+                -- TPダメージ修正: sets.precast.WS.phys.melee.first.damage
+                -- クリティカル: sets.precast.WS.phys.melee.first.crit
+                -- 追加効果: sets.precast.WS.phys.melee.first.debuf
+                -- その他: sets.precast.WS.phys.melee.first.other
+            -- 全段倍率: sets.precast.WS.phys.melee.multi
+                -- TPダメージ修正: sets.precast.WS.phys.melee.multi.damage
+                -- クリティカル: sets.precast.WS.phys.melee.multi.crit
+                -- 追加効果: sets.precast.WS.phys.melee.multi.debuf
+                -- その他: sets.precast.WS.phys.melee.multi.other
+        -- 遠隔: sets.precast.WS.phys.range
+            -- 初段倍率: sets.precast.WS.phys.range.first
+                -- TPダメージ修正: sets.precast.WS.phys.range.first.damage
+                -- クリティカル: sets.precast.WS.phys.range.first.crit
+                -- 追加効果: sets.precast.WS.phys.range.first.debuf
+                -- その他: sets.precast.WS.phys.range.first.other
+            -- 全段倍率: sets.precast.WS.phys.range.multi
+                -- TPダメージ修正: sets.precast.WS.phys.range.multi.damage
+                -- クリティカル: sets.precast.WS.phys.range.multi.crit
+    -- 属性: sets.precast.WS.magic
+                -- TPダメージ修正: sets.precast.WS.magic.damage
+                -- 追加効果: sets.precast.WS.magic.debuf
+                -- その他: sets.precast.WS.magic.other
+    -- 属性物理: sets.precast.WS.magicphys
+    -- ブレス: sets.precast.WS.breath
+                -- TPダメージ修正: sets.precast.WS.breath.damage
+                -- その他: sets.precast.WS.breath.other
+
+    sets.precast.WS.phys = {}
+    sets.precast.WS.phys.melee = {}
+    sets.precast.WS.phys.melee.first = {}
+    sets.precast.WS.phys.melee.first.damage = {}
+    sets.precast.WS.phys.melee.first.crit = {}
+    sets.precast.WS.phys.melee.first.debuf = {}
+    sets.precast.WS.phys.melee.first.other = {}
+    sets.precast.WS.phys.melee.multi = {}
+    sets.precast.WS.phys.melee.multi.damage = {}
+    sets.precast.WS.phys.melee.multi.crit = {}
+    sets.precast.WS.phys.melee.multi.debuf = {}
+    sets.precast.WS.phys.melee.multi.other = {}
+    sets.precast.WS.phys.range = {}
+    sets.precast.WS.phys.range.first = {}
+    sets.precast.WS.phys.range.first.damage = {}
+    sets.precast.WS.phys.range.first.crit = {}
+    sets.precast.WS.phys.range.first.debuf = {}
+    sets.precast.WS.phys.range.first.other = {}
+    sets.precast.WS.phys.range.multi = {}
+    sets.precast.WS.phys.range.multi.damage = {}
+    sets.precast.WS.phys.range.multi.crit = {}
+    sets.precast.WS.magic = {}
+    sets.precast.WS.magic.damage = {}
+    sets.precast.WS.magic.debuf = {}
+    sets.precast.WS.magic.other = {}
+    sets.precast.WS.magicphys = {}
+    sets.precast.WS.breath = {}
+    sets.precast.WS.breath.damage = {}
+    sets.precast.WS.breath.other = {}
+
+    -- A category is described as 9-bit bitset.
+    WSCategoryId = {
+        Phys = 0,
+        Magic = 64,
+        MagicPhys = 128,
+        Breath = 192,
+        Heal = 256,
+
+        Melee = 0,
+        Range = 32,
+
+        First = 0,
+        Multi = 16,
+
+        Fire = 0,
+        Ice = 4,
+        Wind = 8,
+        Earth = 12,
+        Lightning = 16,
+        Water = 20,
+        Light = 24,
+        Dark = 28,
+
+        Damage = 0,
+        Crit = 1,
+        Debuf = 2,
+        Other = 3,
+   }
+
+    WSCategoryMap = {}
+
+    WSCategoryMap["コンボ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["タックル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Debuf
+    WSCategoryMap["短勁"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["バックハンドブロー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["乱撃"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["スピンアタック"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["空鳴拳"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["双竜脚"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["夢想阿修羅拳"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["闘魂旋風脚"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["ファイナルパラダイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ファイナルヘヴン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["アスケーテンツォルン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["連関六合圏"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["ビクトリースマイト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["四神円舞"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Debuf
+    WSCategoryMap["ドラゴンブロウ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["マスカラ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["ワスプスティング"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ガストスラッシュ"] = WSCategoryId.Magic | WSCategoryId.Wind | WSCategoryId.Damage
+    WSCategoryMap["シャドーステッチ"] = WSCategoryId.Phys | WSCategoryMap.Melee | WSCategoryMap.First | WSCategoryId.Debuf
+    WSCategoryMap["バイパーバイト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["サイクロン"] = WSCategoryId.Magic | WSCategoryId.Wind | WSCategoryId.Damage
+    WSCategoryMap["エナジースティール"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Other
+    WSCategoryMap["エナジードレイン"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Other
+    WSCategoryMap["ダンシングエッジ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["シャークバイト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["エヴィサレーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["イオリアンエッジ"] = WSCategoryId.Magic | WSCategoryId.Wind | WSCategoryId.Damage
+    WSCategoryMap["マーシーストローク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["マンダリクスタッブ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["モーダントライム"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ピリッククレオス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Debuf
+    WSCategoryMap["ルドラストーム"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["エクゼンテレター"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Debuf
+    WSCategoryMap["ルースレスストローク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["ファストブレード"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["バーニングブレード"] = WSCategoryId.Magic | WSCategoryId.Fire | WSCategoryId.Damage
+    WSCategoryMap["レッドロータス"] = WSCategoryId.Magic | WSCategoryId.Fire | WSCategoryId.Damage
+    WSCategoryMap["フラットブレード"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["シャインブレード"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["セラフブレード"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["サークルブレード"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["スピリッツウィズイン"] = WSCategoryId.Breath | WSCategoryId.Damage
+    WSCategoryMap["ボーパルブレード"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["スウィフトブレード"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["サベッジブレード"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["サンギンブレード"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Other
+    WSCategoryMap["ナイスオブランド"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ナイツオブランド"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ロズレーファタール"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ロイエ"] = WSCategoryId.Breath | WSCategoryId.Other
+    WSCategoryMap["エクスピアシオン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ウリエルブレード"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["グローリースラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["シャンデュシニュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["レクイエスカット"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["ファストブレードII"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["インペラトル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["ハードスラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["パワースラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["フロストバイト"] = WSCategoryId.Magic | WSCategoryId.Ice | WSCategoryId.Damage
+    WSCategoryMap["フリーズバイト"] = WSCategoryId.Magic | WSCategoryId.Ice | WSCategoryId.Damage
+    WSCategoryMap["ショックウェーブ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["クレセントムーン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["シックルムーン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["スピンスラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["グラウンドストライク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ヘラクレススラッシュ"] = WSCategoryId.Magic | WSCategoryId.Ice | WSCategoryId.Debuf
+    WSCategoryMap["スカージ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["トアクリーバー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["レゾルーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["デミディエーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["フィンブルヴェト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["レイジングアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["スマッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ラファールアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["アバランチアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["スピニングアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ランページ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["カラミティ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ミストラルアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["デシメーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["ボーラアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["オンスロート"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["プライマルレンド"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["クラウドスプリッタ"] = WSCategoryId.Magic | WSCategoryId.Lightning | WSCategoryId.Damage
+    WSCategoryMap["ルイネーター"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["ブリッツ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["シールドブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["アイアンテンペスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["シュトルムヴィント"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Othe
+    WSCategoryMap["アーマーブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["キーンエッジ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["ウェポンブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["レイジングラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["フルブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["スチールサイクロン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["フェルクリーヴ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["メタトロントーメント"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["キングズジャスティス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ウッコフューリー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["アップヒーバル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ディザスター"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["ダブルスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damag
+    WSCategoryMap["サンダースラスト"] = WSCategoryId.Magic | WSCategoryId.Lightning | WSCategoryId.Damage
+    WSCategoryMap["ライデンスラスト"] = WSCategoryId.Magic | WSCategoryId.Lightning | WSCategoryId.Damage
+    WSCategoryMap["足払い"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ペンタスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ボーパルスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["スキュアー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["大車輪"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["インパルスドライヴ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ソニックスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ゲイルスコグル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["雲蒸竜変"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["カムラン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["スターダイバー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["ダーマット"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["スライス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ダークハーベスト"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["シャドーオブデス"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["ナイトメアサイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["スピニングサイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ボーパルサイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["ギロティン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["クロスリーパー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["スパイラルヘル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["インファナルサイズ"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Debuf
+    WSCategoryMap["カタストロフィ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["インサージェンシー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["クワイタス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["エントロピー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["ジ・オリジン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["臨"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["烈"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["滴"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Water | WSCategoryId.Damage
+    WSCategoryMap["凍"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Ice | WSCategoryId.Damage
+    WSCategoryMap["地"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Earth | WSCategoryId.Damage
+    WSCategoryMap["影"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["迅"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["天"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["空"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["湧"] = WSCategoryId.Magic | WSCategoryId.Water | WSCategoryId.Debuf
+    WSCategoryMap["生者必滅"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["カムハブリ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["秘"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["瞬"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["是生滅法"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["壱之太刀・燕飛"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["弐之太刀・鋒縛"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["参之太刀・轟天"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Lightning | WSCategoryId.Damage
+    WSCategoryMap["四之太刀・陽炎"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Fire | WSCategoryId.Damage
+    WSCategoryMap["五之太刀・陣風"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Wind | WSCategoryId.Damage
+    WSCategoryMap["六之太刀・光輝"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["七之太刀・雪風"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["八之太刀・月光"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["九之太刀・花車"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["十一之太刀・鳳蝶"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["盛夏之太刀・西瓜割"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["零之太刀・回天"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["十之太刀・乱鴉"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["祖之太刀・不動"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["十二之太刀・照破"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["絶之太刀・無名"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["シャインストライク"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["セラフストライク"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["ブレインシェイカー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["スターライト"] = WSCategoryId.Heal
+    WSCategoryMap["ムーンライト"] = WSCategoryId.Heal
+    WSCategoryMap["スカルブレイカー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["トゥルーストライク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ジャッジメント"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ヘキサストライク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["ブラックヘイロー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["フラッシュノヴァ"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Debuf
+    WSCategoryMap["ランドグリース"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ミスティックブーン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ダガン"] = WSCategoryId.Heal
+    WSCategoryMap["レルムレイザー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
+    WSCategoryMap["エクズデーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ダグダ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["スターバースト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ロッククラッシャー"] = WSCategoryId.Magic | WSCategoryId.Earth | WSCategoryId.Damage
+    WSCategoryMap["アースクラッシャー"] = WSCategoryId.Magic | WSCategoryId.Earth | WSCategoryId.Damage
+    -- TODO: Support randomize Light or Dark element.
+    WSCategoryMap["スターバースト"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["サンバースト"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["シェルクラッシャー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["フルスイング"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["スピリットテーカー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["レトリビューション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["カタクリスム"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["タルタロスゲート"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ヴィゾフニル"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Debuf
+    WSCategoryMap["ガーランドオブブリス"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Debuf
+    WSCategoryMap["オムニシエンス"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Debuf
+    WSCategoryMap["タルタロストーパー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["ミルキル"] = WSCategoryId.Heal
+    WSCategoryMap["シャッターソウル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["オシャラ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["フレイミングアロー"] = WSCategoryId.MagicPhys | WSCategoryId.Range | WSCategoryId.Fire | WSCategoryId.Damage
+    WSCategoryMap["ピアシングアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ダリングアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["サイドワインダー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ブラストアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["アーチングアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["エンピリアルアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["リフルジェントアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["南無八幡"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ジシュヌの光輝"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.Multi | WSCategoryId.Crit
+    WSCategoryMap["エイペクスアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["シャルヴ"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+
+    WSCategoryMap["ホットショット"] = WSCategoryId.MagicPhys | WSCategoryId.Range | WSCategoryId.Fire | WSCategoryId.Damage
+    WSCategoryMap["スプリットショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["スナイパーショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["スラッグショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ブラストショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["ヘヴィショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
+    WSCategoryMap["デトネーター"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+    WSCategoryMap["ナビングショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Debuf
+    WSCategoryMap["カラナック"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
+    WSCategoryMap["トゥルーフライト"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
+    WSCategoryMap["レデンサリュート"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
+    WSCategoryMap["ワイルドファイア"] = WSCategoryId.Magic | WSCategoryId.Fire | WSCategoryId.Other
+    WSCategoryMap["ラストスタンド"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.Multi | WSCategoryId.Damage
+    WSCategoryMap["ジ・エンド"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+end
+
 
 function init_weapon_skill()
     --近接物理ダメージ：sets.precast.WS.Damage
