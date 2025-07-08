@@ -10,13 +10,13 @@ function init_gear_sets()
 
     --武器
     gear.Laphria = { name = "ラフリア" }
-    gear.Chango = { name = "シャンゴル" }
+    gear.Chango = { name = "シャンゴル", auguments = { 'Path: A', } }
     gear.Lycurgos = { name = "ライカーゴス" }
     gear.ShiningOne = { name = "シャイニングワン" }
     gear.Naegling = { name = "ネイグリング" }
-    gear.LoxoticMace = { name = "ロクソテクメイス+1" }
-    gear.IkengasAxe = { name = "イケンガアクス" }
-    gear.Malevolence = { name = "マレヴォレンス" }
+    gear.LoxoticMace = { name = "ロクソテクメイス+1", augments = { 'Path: A', } }
+    gear.IkengasAxe = { name = "イケンガアクス", auguments = { 'Path: A', } }
+    gear.Malevolence = { name = "マレヴォレンス", augments = { 'Path: A', } }
     gear.UtuGrip = { name = "ウトゥグリップ" }
     gear.BlurredShield = { name = "ブラーシールド+1" }
     gear.AdapaShield = { name = "アダパシールド" }
@@ -97,7 +97,7 @@ function init_gear_sets()
     -- TODO
 
     --WSダメージ
-    sets.precast.WS.Damage = {
+    sets.precast.WS.melee = {
         ammo = "ノブキエリ",
         head = "ＡＧマスク+4",
         body = { name = "ニャメメイル", augments = { 'Path: B', } },
@@ -113,7 +113,7 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
-    sets.precast.WS.Critical = {
+    sets.precast.WS.melee_critical = {
         ammo = "イェットシーラ+1",
         head = "ＡＧマスク+4",
         body = { name = "ニャメメイル", augments = { 'Path: B', } },
@@ -129,8 +129,55 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
-    --WS魔攻
-    sets.precast.WS.Magic = {
+    sets.precast.WS.melee_multi = {
+        ammo = { name = "コイストボダー", augments = { 'Path: A', } },
+        head = { name = "ニャメヘルム", augments = { 'Path: B', } },
+        body = { name = "ニャメメイル", augments = { 'Path: B', } },
+        hands = { name = "ニャメガントレ", augments = { 'Path: B', } },
+        legs = { name = "ニャメフランチャ", augments = { 'Path: B' } },
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
+        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
+        left_ear = gear.MoonshadeEaring,
+        right_ear = gear.SortieEaring,
+        left_ring = "コーネリアリング",
+        right_ring = "ニックマドゥリング",
+        back = gear.AmbusMantle.AADA
+    }
+
+    sets.precast.WS.melee_debuf = {
+        ammo = "ペムフレドタスラム",
+        head = "ＢＩマスク+3",
+        body = "ＢＩロリカ+3",
+        hands = "ＢＩマフラ+3",
+        legs = "ＢＩクウィス+3",
+        feet = "ＢＩカリガ+3",
+        neck = "無の喉輪",
+        waist = "無の腰当",
+        left_ear = gear.MoonshadeEaring,
+        right_ear = gear.SortieEaring,
+        left_ring = "コーネリアリング",
+        right_ring = { name = "メタモルリング+1", augments = { 'Path: A', } },
+        back = "無の外装"
+    }
+
+    sets.precast.WS.melee_accuracy = {
+        ammo = { name = "シーズボムレット+1", augments = { 'Path: A', } },
+        head = "ＢＩマスク+3",
+        body = "ＢＩロリカ+3",
+        hands = "ＢＩマフラ+3",
+        legs = "ＢＩクウィス+3",
+        feet = "ＢＩカリガ+3",
+        neck = "無の喉輪",
+        waist = "無の腰当",
+        left_ear = "ディグニタリピアス",
+        right_ear = gear.SortieEaring,
+        left_ring = "シーリチリング+1",
+        right_ring = "シーリチリング+1",
+        back = "無の外装"
+    }
+
+    sets.precast.WS.magical = {
         ammo = "ノブキエリ",
         head = { name = "ニャメヘルム", augments = { 'Path: B', } },
         body = { name = "ニャメメイル", augments = { 'Path: B', } },
@@ -146,29 +193,18 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
-    -- WS魔命
-    sets.precast.WS.MagicAcc = {
-        ammo = "ペムフレドタスラム",
-        head = "ＢＩマスク+3",
-        body = "ＢＩロリカ+3",
-        hands = "ＢＩマフラ+3",
-        legs = "ＢＩクウィス+3",
-        feet = "ＢＩカリガ+3",
-        neck = "無の喉輪",
-        waist = "無の腰当",
-        left_ear = gear.MoonshadeEaring,
+    sets.precast.WS.subtleblow = {
+        neck = { name = "バーシチョーカー+1", augments = { 'Path: A', } },
+        waist = "ニヌルタサッシュ",
         right_ear = gear.SortieEaring,
-        left_ring = "コーネリアリング",
-        right_ring = "エパミノダスリング",
-        back = "無の外装"
+        left_ring = "シーリチリング+1",
+        right_ring = "シーリチリング+1",
     }
-
-    --WSモクシャ
-    -- TODO
+    -- T
 
     --共通WS定義読み込み
     init_weapon_skill()
 
     -- 個別WS定義
-    sets.precast.WS["アップヒーバル"].Normal = set_combine(sets.precast.WS.Damage, { back = gear.AmbusMantle.WSVIT })
+    sets.precast.WS["アップヒーバル"].Normal = set_combine(sets.precast.WS.melee, { back = gear.AmbusMantle.WSVIT })
 end
