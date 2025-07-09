@@ -25,7 +25,7 @@ function job_setup()
     state.WeaponskillMode:options('Normal', 'Accuracy', 'SubtleBlow')
 
     -- gs c cycle MainWeapons
-    state.MainWeapons = M { 'Laphria', 'Chango', 'Lycurgos', 'ShiningOne', 'Naegling', 'LoxoticMace', 'IkengasAxe', 'Malevolence' }
+    state.MainWeapons = M { 'Laphria', 'Chango', 'Lycurgos', 'ShiningOne', 'Naegling', 'OnionSword2', 'LoxoticMace', 'IkengasAxe', 'Malevolence' }
 
     -- gs c cycle SubWeapons
     state.SubWeapons  = M { 'UtuGrip', 'BlurredShield', 'AdapaShield' }

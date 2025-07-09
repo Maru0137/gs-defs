@@ -17,7 +17,7 @@
 --   * hybrid_ranged
 --     * hybrid_ranged_accuracy (-> ranged_accuracy)
 -- * breath
--- none
+-- * none
 
 WSClass = {
   Melee = 1,
@@ -27,6 +27,17 @@ WSClass = {
   HybridRanged = 5,
   Breath = 6,
   None = 7,
+}
+
+WSElem = {
+  Fire = 1,
+  Ice = 2,
+  Wind = 3,
+  Eath = 4,
+  Lightning = 5,
+  Water = 6,
+  Light = 7,
+  Dark = 8,
 }
 
 WSDefault = {
@@ -59,224 +70,224 @@ function init_ws_attr_map()
   WSAttrs["マルカラ"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
   WSAttrs["ワスプスティング"] = { class = WSClass.Melee, default = WSDefault.Damage }
-  WSAttrs["ガストスラッシュ"] = { class = WSClass.Magical, default = WSDefault.Damage }
+  WSAttrs["ガストスラッシュ"] = { class = WSClass.Magical, elem = WSElem.Wind, default = WSDefault.Damage }
   WSAttrs["シャドーステッチ"] = { class = WSClass.Melee, default = WSDefault.Damage }
   WSAttrs["バイパーバイト"] = { class = WSClass.Melee, default = WSDefault.Damage }
-  WSAttrs["サイクロン"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["エナジースティール"] = { class = WSClass.Magic, default = WSDefault.Damage }
-  WSAttrs["エナジードレイン"] = { class = WSClass.Magic, default = WSDefault.Damage }
-  WSAttrs["ダンシングエッジ"] = { class = WSClass.Physical, default = WSDefault.Multi }
-  WSAttrs["シャークバイト"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["エヴィサレーション"] = { class = WSClass.Physical, default = WSDefault.Critical }
-  WSAttrs["イオリアンエッジ"] = { class = WSClass.Magic, default = WSDefault.Damage }
-  WSAttrs["マーシーストローク"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["マンダリクスタッブ"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["モーダントライム"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["ピリッククレオス"] = { class = WSClass.Physical, default = WSDefault.Multi }
-  WSAttrs["ルドラストーム"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["エクゼンテレター"] = { class = WSClass.Physical, default = WSDefault.Multi }
-  WSAttrs["ルースレスストローク"] = { class = WSClass.Physical, default = WSDefault.Damage }
+  WSAttrs["サイクロン"] = { class = WSClass.Magical, elem = WSElem.Wind, default = WSDefault.Damage }
+  WSAttrs["エナジースティール"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["エナジードレイン"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["ダンシングエッジ"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["シャークバイト"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["エヴィサレーション"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["イオリアンエッジ"] = { class = WSClass.Magical, elem = WSElem.Wind, default = WSDefault.Damage }
+  WSAttrs["マーシーストローク"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["マンダリクスタッブ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["モーダントライム"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ピリッククレオス"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ルドラストーム"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["エクゼンテレター"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ルースレスストローク"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["ファストブレード"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["バーニングブレード"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["レッドロータス"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["フラットブレード"] = { class = WSClass.Physical, default = WSDefault.Debuf }
-  WSAttrs["シャインブレード"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["セラフブレード"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["サークルブレード"] = { class = WSClass.Physical, default = WSDefault.Damage }
+  WSAttrs["ファストブレード"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["バーニングブレード"] = { class = WSClass.Magical, elem = WSElem.Fire, default = WSDefault.Damage }
+  WSAttrs["レッドロータス"] = { class = WSClass.Magical, elem = WSElem.Fire, default = WSDefault.Damage }
+  WSAttrs["フラットブレード"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["シャインブレード"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["セラフブレード"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["サークルブレード"] = { class = WSClass.Melee, default = WSDefault.Damage }
   WSAttrs["スピリッツウィズイン"] = { class = WSClass.Breath, default = WSDefault.Damage }
-  WSAttrs["ボーパルブレード"] = { class = WSClass.Physical, default = WSDefault.Critical }
-  WSAttrs["スウィフトブレード"] = { class = WSClass.Physical, default = WSDefault.Multi }
-  WSAttrs["サベッジブレード"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["サンギンブレード"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["ナイスオブランド"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["ナイツオブランド"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["ロズレーファタール"] = { class = WSClass.Physical, default = WSDefault.Damage }
+  WSAttrs["ボーパルブレード"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["スウィフトブレード"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["サベッジブレード"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["サンギンブレード"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["ナイスオブランド"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ナイツオブランド"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ロズレーファタール"] = { class = WSClass.Melee, default = WSDefault.Damage }
   WSAttrs["ロイエ"] = { class = WSClass.Breath, default = WSDefault.Damage }
-  WSAttrs["エクスピアシオン"] = { class = WSClass.Physical, default = WSDefault.Damage }
-  WSAttrs["ウリエルブレード"] = { class = WSClass.Magical, default = WSDefault.Damage }
-  WSAttrs["グローリースラッシュ"] = { class = WSClass.Physical, default = WSDefault.Debuf }
-  WSAttrs["シャンデュシニュ"] = { class = WSClass.Physical, default = WSDefault.Critical }
-  WSAttrs["レクイエスカット"] = { class = WSClass.Physical, default = WSDefault.Multi }
-  WSAttrs["ファストブレードII"] = { class = WSClass.Physical, default = WSDefault.Multi }
-  WSAttrs["インペラトル"] = { class = WSClass.Physical, default = WSDefault.Damage }
+  WSAttrs["エクスピアシオン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ウリエルブレード"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["グローリースラッシュ"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["シャンデュシニュ"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["レクイエスカット"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ファストブレードII"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["インペラトル"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["ハードスラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["パワースラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["フロストバイト"] = WSCategoryId.Magic | WSCategoryId.Ice | WSCategoryId.Damage
-  WSAttrs["フリーズバイト"] = WSCategoryId.Magic | WSCategoryId.Ice | WSCategoryId.Damage
-  WSAttrs["ショックウェーブ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["クレセントムーン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["シックルムーン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["スピンスラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["グラウンドストライク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ヘラクレススラッシュ"] = WSCategoryId.Magic | WSCategoryId.Ice | WSCategoryId.Debuf
-  WSAttrs["スカージ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["トアクリーバー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["レゾルーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
-  WSAttrs["デミディエーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["フィンブルヴェト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["ハードスラッシュ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["パワースラッシュ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["フロストバイト"] = { class = WSClass.Magical, elem = WSElem.Ice, default = WSDefault.Damage }
+  WSAttrs["フリーズバイト"] = { class = WSClass.Magical, elem = WSElem.Ice, default = WSDefault.Damage }
+  WSAttrs["ショックウェーブ"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["クレセントムーン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["シックルムーン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["スピンスラッシュ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["グラウンドストライク"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ヘラクレススラッシュ"] = { class = WSClass.Magical, elem = WSElem.Ice, default = WSDefault.Damage }
+  WSAttrs["スカージ"] = { class = WSClass.Melee, default = WSDefault.Other }
+  WSAttrs["トアクリーバー"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["レゾルーション"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["デミディエーション"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["フィンブルヴェト"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["レイジングアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["スマッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["ラファールアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["アバランチアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["スピニングアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ランページ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
-  WSAttrs["カラミティ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ミストラルアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["デシメーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
-  WSAttrs["ボーラアクス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["オンスロート"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["プライマルレンド"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
-  WSAttrs["クラウドスプリッタ"] = WSCategoryId.Magic | WSCategoryId.Lightning | WSCategoryId.Damage
-  WSAttrs["ルイネーター"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
-  WSAttrs["ブリッツ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["レイジングアクス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["スマッシュ"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["ラファールアクス"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["アバランチアクス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["スピニングアクス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ランページ"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["カラミティ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ミストラルアクス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["デシメーション"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ボーラアクス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["オンスロート"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["プライマルレンド"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["クラウドスプリッタ"] = { class = WSClass.Magical, elem = WSElem.Lightning, default = WSDefault.Damage }
+  WSAttrs["ルイネーター"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ブリッツ"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["シールドブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["アイアンテンペスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["シュトルムヴィント"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Othe
-  WSAttrs["アーマーブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["キーンエッジ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["ウェポンブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["レイジングラッシュ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["フルブレイク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["スチールサイクロン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["フェルクリーヴ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["メタトロントーメント"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["キングズジャスティス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ウッコフューリー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["アップヒーバル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ディザスター"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["シールドブレイク"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["アイアンテンペスト"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["シュトルムヴィント"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["アーマーブレイク"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["キーンエッジ"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["ウェポンブレイク"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["レイジングラッシュ"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["フルブレイク"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["スチールサイクロン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["フェルクリーヴ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["メタトロントーメント"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["キングズジャスティス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ウッコフューリー"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["アップヒーバル"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ディザスター"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["ダブルスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damag
-  WSAttrs["サンダースラスト"] = WSCategoryId.Magic | WSCategoryId.Lightning | WSCategoryId.Damage
-  WSAttrs["ライデンスラスト"] = WSCategoryId.Magic | WSCategoryId.Lightning | WSCategoryId.Damage
-  WSAttrs["足払い"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["ペンタスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ボーパルスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["スキュアー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["大車輪"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["インパルスドライヴ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ソニックスラスト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ゲイルスコグル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["雲蒸竜変"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["カムラン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["スターダイバー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
-  WSAttrs["ダーマット"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["ダブルスラスト"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["サンダースラスト"] = { class = WSClass.Magical, elem = WSElem.Lightning, default = WSDefault.Damage }
+  WSAttrs["ライデンスラスト"] = { class = WSClass.Magical, elem = WSElem.Lightning, default = WSDefault.Damage }
+  WSAttrs["足払い"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["ペンタスラスト"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ボーパルスラスト"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["スキュアー"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["大車輪"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["インパルスドライヴ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ソニックスラスト"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ゲイルスコグル"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["雲蒸竜変"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["カムラン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["スターダイバー"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ダーマット"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["スライス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ダークハーベスト"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["シャドーオブデス"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["ナイトメアサイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["スピニングサイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ボーパルサイス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["ギロティン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["クロスリーパー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["スパイラルヘル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["インファナルサイズ"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Debuf
-  WSAttrs["カタストロフィ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["インサージェンシー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["クワイタス"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["エントロピー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Damage
-  WSAttrs["ジ・オリジン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["スライス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ダークハーベスト"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["シャドーオブデス"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["ナイトメアサイス"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["スピニングサイス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ボーパルサイス"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["ギロティン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["クロスリーパー"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["スパイラルヘル"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["インファナルサイズ"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["カタストロフィ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["インサージェンシー"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["クワイタス"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["エントロピー"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ジ・オリジン"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["臨"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["烈"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["滴"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Water | WSCategoryId.Damage
-  WSAttrs["凍"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Ice | WSCategoryId.Damage
-  WSAttrs["地"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Earth | WSCategoryId.Damage
-  WSAttrs["影"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["迅"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
-  WSAttrs["天"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["空"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
-  WSAttrs["湧"] = WSCategoryId.Magic | WSCategoryId.Water | WSCategoryId.Debuf
-  WSAttrs["生者必滅"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["カムハブリ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["秘"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["瞬"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
-  WSAttrs["是生滅法"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["臨"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["烈"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["滴"] = { class = WSClass.HybridMelee, elem = WSElem.Water, default = WSDefault.Damage }
+  WSAttrs["凍"] = { class = WSClass.HybridMelee, elem = WSElem.Ice, default = WSDefault.Damage }
+  WSAttrs["地"] = { class = WSClass.HybridMelee, elem = WSElem.Earth, default = WSDefault.Damage }
+  WSAttrs["影"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["迅"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["天"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["空"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["湧"] = { class = WSClass.Magical, elem = WSElem.Water, default = WSDefault.Damage }
+  WSAttrs["生者必滅"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["カムハブリ"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["秘"] = { class = WSClass.Melee, default = WSDefault.Critical }
+  WSAttrs["瞬"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["是生滅法"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["壱之太刀・燕飛"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["弐之太刀・鋒縛"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["参之太刀・轟天"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Lightning | WSCategoryId.Damage
-  WSAttrs["四之太刀・陽炎"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Fire | WSCategoryId.Damage
-  WSAttrs["五之太刀・陣風"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Wind | WSCategoryId.Damage
-  WSAttrs["六之太刀・光輝"] = WSCategoryId.MagicPhys | WSCategoryId.Melee | WSCategoryId.Light | WSCategoryId.Damage
-  WSAttrs["七之太刀・雪風"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["八之太刀・月光"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["九之太刀・花車"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["十一之太刀・鳳蝶"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["盛夏之太刀・西瓜割"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["零之太刀・回天"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["十之太刀・乱鴉"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["祖之太刀・不動"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["十二之太刀・照破"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["絶之太刀・無名"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["壱之太刀・燕飛"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["弐之太刀・鋒縛"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["参之太刀・轟天"] = { class = WSClass.HybridMelee, elem = WSElem.Lightning, default = WSDefault.Damage }
+  WSAttrs["四之太刀・陽炎"] = { class = WSClass.HybridMelee, elem = WSElem.Fire, default = WSDefault.Damage }
+  WSAttrs["五之太刀・陣風"] = { class = WSClass.HybridMelee, elem = WSElem.Wind, default = WSDefault.Damage }
+  WSAttrs["六之太刀・光輝"] = { class = WSClass.HybridMelee, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["七之太刀・雪風"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["八之太刀・月光"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["九之太刀・花車"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["十一之太刀・鳳蝶"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["盛夏之太刀・西瓜割"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["零之太刀・回天"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["十之太刀・乱鴉"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["祖之太刀・不動"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["十二之太刀・照破"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["絶之太刀・無名"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["シャインストライク"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
-  WSAttrs["セラフストライク"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
-  WSAttrs["ブレインシェイカー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["スターライト"] = WSCategoryId.Heal
-  WSAttrs["ムーンライト"] = WSCategoryId.Heal
-  WSAttrs["スカルブレイカー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["トゥルーストライク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ジャッジメント"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ヘキサストライク"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Crit
-  WSAttrs["ブラックヘイロー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["フラッシュノヴァ"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Debuf
-  WSAttrs["ランドグリース"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["ミスティックブーン"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ダガン"] = WSCategoryId.Heal
-  WSAttrs["レルムレイザー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.Multi | WSCategoryId.Other
-  WSAttrs["エクズデーション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ダグダ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["シャインストライク"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["セラフストライク"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["ブレインシェイカー"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["スターライト"] = { class = WSClass.None, default = WSDefault.Damage }
+  WSAttrs["ムーンライト"] = { class = WSClass.None, default = WSDefault.Damage }
+  WSAttrs["スカルブレイカー"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["トゥルーストライク"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ジャッジメント"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ヘキサストライク"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["ブラックヘイロー"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["フラッシュノヴァ"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["ランドグリース"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ミスティックブーン"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ダガン"] = { class = WSClass.None, default = WSDefault.Damage }
+  WSAttrs["レルムレイザー"] = { class = WSClass.Melee, default = WSDefault.Multi }
+  WSAttrs["エクズデーション"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ダグダ"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["スターバースト"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ロッククラッシャー"] = WSCategoryId.Magic | WSCategoryId.Earth | WSCategoryId.Damage
-  WSAttrs["アースクラッシャー"] = WSCategoryId.Magic | WSCategoryId.Earth | WSCategoryId.Damage
+  WSAttrs["スターバースト"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ロッククラッシャー"] = { class = WSClass.Magical, elem = WSElem.Earth, default = WSDefault.Damage }
+  WSAttrs["アースクラッシャー"] = { class = WSClass.Magical, elem = WSElem.Earth, default = WSDefault.Damage }
   -- TODO: Support randomize Light or Dark element.
-  WSAttrs["スターバースト"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["サンバースト"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["シェルクラッシャー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["フルスイング"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["スピリットテーカー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["レトリビューション"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["カタクリスム"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["タルタロスゲート"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["ヴィゾフニル"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Debuf
-  WSAttrs["ガーランドオブブリス"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Debuf
-  WSAttrs["オムニシエンス"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Debuf
-  WSAttrs["タルタロストーパー"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["ミルキル"] = WSCategoryId.Heal
-  WSAttrs["シャッターソウル"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["オシャラ"] = WSCategoryId.Phys | WSCategoryId.Melee | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["スターバースト"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["サンバースト"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["シェルクラッシャー"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["フルスイング"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["スピリットテーカー"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["レトリビューション"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["カタクリスム"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["タルタロスゲート"] = { class = WSClass.Melee, default = WSDefault.Damage }
+  WSAttrs["ヴィゾフニル"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Debuf }
+  WSAttrs["ガーランドオブブリス"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Debuf }
+  WSAttrs["オムニシエンス"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Debuf }
+  WSAttrs["タルタロストーパー"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["ミルキル"] = { class = WSClass.None, default = WSDefault.Damage }
+  WSAttrs["シャッターソウル"] = { class = WSClass.Melee, default = WSDefault.Debuf }
+  WSAttrs["オシャラ"] = { class = WSClass.Melee, default = WSDefault.Damage }
 
-  WSAttrs["フレイミングアロー"] = WSCategoryId.MagicPhys | WSCategoryId.Range | WSCategoryId.Fire | WSCategoryId.Damage
-  WSAttrs["ピアシングアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ダリングアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["サイドワインダー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ブラストアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["アーチングアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["エンピリアルアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["リフルジェントアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["南無八幡"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ジシュヌの光輝"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.Multi | WSCategoryId.Crit
-  WSAttrs["エイペクスアロー"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["シャルヴ"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["フレイミングアロー"] = { class = WSClass.HybridRanged, elem = WSElem.Fire, default = WSDefault.Damage }
+  WSAttrs["ピアシングアロー"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["ダリングアロー"] = { class = WSClass.Ranged, default = WSDefault.Critical }
+  WSAttrs["サイドワインダー"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["ブラストアロー"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["アーチングアロー"] = { class = WSClass.Ranged, default = WSDefault.Critical }
+  WSAttrs["エンピリアルアロー"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["リフルジェントアロー"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["南無八幡"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["ジシュヌの光輝"] = { class = WSClass.Ranged, default = WSDefault.Multi }
+  WSAttrs["エイペクスアロー"] = { class = WSClass.Ranged, default = WSDefault.Damahe }
+  WSAttrs["シャルヴ"] = { class = WSClass.Ranged, default = WSDefault.Damage }
 
-  WSAttrs["ホットショット"] = WSCategoryId.MagicPhys | WSCategoryId.Range | WSCategoryId.Fire | WSCategoryId.Damage
-  WSAttrs["スプリットショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["スナイパーショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["スラッグショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ブラストショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["ヘヴィショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Crit
-  WSAttrs["デトネーター"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
-  WSAttrs["ナビングショット"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Debuf
-  WSAttrs["カラナック"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Other
-  WSAttrs["トゥルーフライト"] = WSCategoryId.Magic | WSCategoryId.Light | WSCategoryId.Damage
-  WSAttrs["レデンサリュート"] = WSCategoryId.Magic | WSCategoryId.Dark | WSCategoryId.Damage
-  WSAttrs["ワイルドファイア"] = WSCategoryId.Magic | WSCategoryId.Fire | WSCategoryId.Other
-  WSAttrs["ラストスタンド"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.Multi | WSCategoryId.Damage
-  WSAttrs["ジ・エンド"] = WSCategoryId.Phys | WSCategoryId.Range | WSCategoryId.First | WSCategoryId.Damage
+  WSAttrs["ホットショット"] = { class = WSClass.HybridRanged, elem = WSElem.Fire, default = WSDefault.Damage }
+  WSAttrs["スプリットショット"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["スナイパーショット"] = { class = WSClass.Ranged, default = WSDefault.Critical }
+  WSAttrs["スラッグショット"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["ブラストショット"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["ヘヴィショット"] = { class = WSClass.Ranged, default = WSDefault.Critical }
+  WSAttrs["デトネーター"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["ナビングショット"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["カラナック"] = { class = WSClass.Ranged, default = WSDefault.Damage }
+  WSAttrs["トゥルーフライト"] = { class = WSClass.Magical, elem = WSElem.Light, default = WSDefault.Damage }
+  WSAttrs["レデンサリュート"] = { class = WSClass.Magical, elem = WSElem.Dark, default = WSDefault.Damage }
+  WSAttrs["ワイルドファイア"] = { class = WSClass.Magical, elem = WSElem.Fire, default = WSDefault.Damage }
+  WSAttrs["ラストスタンド"] = { class = WSClass.Ranged, default = WSDefault.Multi }
+  WSAttrs["ジ・エンド"] = { class = WSClass.Ranged, default = WSDefault.Damage }
 end
