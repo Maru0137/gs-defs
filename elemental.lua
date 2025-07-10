@@ -67,17 +67,17 @@ function get_elemental_obi(spell_element)
         else
             return nil
         end
-    -- Use Hachirin Obi if elemental obi is not available
-    else if gear.HachirinObi then
-        if is_strong_weather(spell_element) then  -- 15% or 25 % 35%
+        -- Use Hachirin Obi if elemental obi is not available
+    elseif gear.HachirinObi then
+        if is_strong_weather(spell_element) then                                          -- 15% or 25 % 35%
             return gear.HachirinObi
         elseif is_weak_weather(spell_element) and not is_inferior_day(spell_element) then -- 10%
             return gear.HachirinObi
-        else if is_day(spell_element) and not is_inferior_weather(spell_element) then -- 10%
+        elseif is_day(spell_element) and not is_inferior_weather(spell_element) then      -- 10%
             return gear.HachirinObi
         end
     else
-        add_to_chat(122, 'Warning: Both of gear.ElementalObi['..spell_element..'] and gear.HachirinObi not defined.')
+        add_to_chat(122, 'Warning: Both of gear.ElementalObi[' .. spell_element .. '] and gear.HachirinObi not defined.')
     end
 
     return nil

@@ -9,14 +9,14 @@ function init_gear_sets()
     lockstyleset = 61
 
     -- Ambuscade Mantles
-    gear.AmbusMantle.AADA = { name = "スメルトリオマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', 'DEX+10', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } }
+    gear.AmbusMantle.AADA = { name = "スメルトリオマント", augments = { 'DEX+20', 'Accuracy+20 Attack+20', '"Dbl.Atk."+10', 'Phys. dmg. taken-10%', } }
     gear.AmbusMantle.WSSTR = { name = "スメルトリオマント", augments = { 'STR+20', 'Accuracy+20 Attack+20', 'STR+10', 'Weapon skill damage +10%', 'Phys. dmg. taken-10%', } }
 
     -- Raive Mantles
 
     -- Sortie Earring
     -- TODO: Check and fix
-    gear.SortieEarring = { name = "春日耳飾り+1", augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+13', 'Mag. Acc.+13', 'Crit.hit rate+4', } }
+    gear.SortieEarring = { name = "春日耳飾り改", augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+14', 'Mag. Acc.+14', 'Weapon skill damage +3%', } }
 
     -- Sets
     --- Idle sets
@@ -46,7 +46,7 @@ function init_gear_sets()
         body = "極春日胴丸",
         hands = { name = "楯無篭手改", augments = { 'Path: A', } },
         legs = "極春日板佩楯",
-        feet = { name = "楯無脛当", augments = { 'Path: A', } },
+        feet = { name = "楯無脛当改", augments = { 'Path: A', } },
         neck = "月光の喉輪",
         waist = "イオスケハベルト+1",
         left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
