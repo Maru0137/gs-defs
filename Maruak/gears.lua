@@ -1,4 +1,4 @@
-function set_user_gears()
+function define_global_gears()
     -- Hand to hand
     gear.Tokkosho = "独鈷杵"
     gear.GodHand = { name = "ゴッドハンド", augments = { 'Path: A', } }
@@ -106,6 +106,17 @@ function set_user_gears()
     gear.BlurredShield = "ブラーシールド+1"
     gear.GenmeiShield = "玄冥盾"
 
+
+    -- Elemental Obis
+    gear.ElementalObi = {}
+    gear.ElementalObi['火'] = "火輪の帯"
+    gear.ElementalObi['氷'] = "氷輪の帯"
+    gear.ElementalObi['風'] = "風輪の帯"
+    gear.ElementalObi['土'] = "土輪の帯"
+    gear.ElementalObi['雷'] = "雷輪の帯"
+    gear.ElementalObi['水'] = "水輪の帯"
+    gear.ElementalObi['光'] = "光輪の帯"
+    gear.ElementalObi['闇'] = "闇輪の帯"
 
     -- Others
     gear.MoonshadeEarring = { name = "胡蝶のイヤリング", augments = { '"Mag.Atk.Bns."+4', 'TP Bonus +250', } }

@@ -1,4 +1,4 @@
-function init_weaponns()
+function init_weapons()
     --デフォルト武器を設定
     send_command('gs c set MainWeapons Naegling')
     send_command('gs c set SubWeapons BlurredShield')

@@ -11,14 +11,13 @@ function user_setup()
     include('gears')
     include('sets')
     define_roll_values()                                                --ロール情報   
-    init_weaponns()                                                     --武器初期化
+    init_weapons()                                                      --武器初期化
     init_custom_spell_map()                                             --スペルマップ定義再構築    
     init_gears()
     init_ws_attr_map()
 
     send_command('input /chatmode party')                               --チャットモード変更
 
-    set_user_gears()
     set_user_sets()
 
     -- send_command('wait 4; gs c set IdleMode Normal; gs c lockstyleset;')--待機装備着替え後にロックスタイル固定
@@ -35,11 +34,15 @@ end
 
 --■■■アクション前処理（共通実装なし）
 function user_post_precast(spell, action, spellMap, eventArgs)
+    if is_elemental_weapon_skill(spell) and elemental_obi_is_better_than_orpheus(spell.element) then
+        equip(get_elemental_obi(spell.element))
 end
 
-
---■■■アクション中処理（共通実装なし）
+--■■■アクション中処理
 function user_post_midcast(spell, action, spellMap, eventArgs)
+    if is_elemental_magic_affedted_by_whether(spell, spellMap) then
+        equip(get_elemental_obi(spell.element))
+    end
 end
 
 
