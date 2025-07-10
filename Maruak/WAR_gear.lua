@@ -207,9 +207,8 @@ function init_gear_sets()
     sets.precast.WS.subtleblow = set_combine(
         sets.precast.WS.melee,
         sets.precast.SubtleBlow, {
+            left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
             right_ear = gear.SortieEarring,
-            left_ring = "シーリチリング+1",
-            right_ring = "シーリチリング+1",
         })
 
     --共通WS定義読み込み

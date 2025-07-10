@@ -68,7 +68,6 @@ function init_gear_sets()
         waist = "イオスケハベルト+1",
         left_ear = "エアバニピアス",
         right_ear = { name = "オノワイヤリング+1", augments = { 'Path: A', } },
-        "",
         left_ring = { name = "ゼラチナスリング+1", augments = { 'Path: A', } },
         right_ring = "フォテファイリング",
         back = gear.AmbusMantle.AADA
@@ -190,12 +189,9 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
-    sets.precast.WS.subtleblow = {
-        neck = { name = "バーシチョーカー+1", augments = { 'Path: A', } },
-        waist = "ニヌルタサッシュ",
-        left_ring = "シーリチリング+1",
-        right_ring = "シーリチリング+1",
-    }
+    sets.precast.WS.SubtleBlow = set_combine(sets.precast.WS.SubtleBlow, {
+        left_ear = { name = "シェレピアス", augments = { 'Path: A', } }
+    })
 
     set_default_ws_sets()
 

@@ -8,6 +8,7 @@ function user_setup()
     -- include('smn_avatar')                                               --召喚定義ファイルロード
     -- include('organizer-lib')
     include('ws_attr')
+    include('elemental')
     include('gears')
     include('sets')
     define_roll_values()                                                --ロール情報   

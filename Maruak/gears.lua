@@ -80,6 +80,7 @@ function define_global_gears()
     gear.Ullr = "ウルル"
 
     -- Marksmanship
+    gear.Ataktos = "アナーキー+2"
     gear.DeathPenalty = "デスペナルティ"
     gear.Compensator = { name = "コンペンセーター", augments = { 'Path: B' } }
     gear.Fomalhaut = "フォーマルハウト"
