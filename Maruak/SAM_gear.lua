@@ -1,4 +1,4 @@
-function init_weaponns()
+function init_weapons()
     --デフォルト武器を設定
     send_command('gs c set MainWeapons Dojikiri')
     send_command('gs c set SubWeapons UtuGrip')
@@ -15,20 +15,21 @@ function init_gear_sets()
     -- Raive Mantles
 
     -- Sortie Earring
+    -- TODO: Check and fix
     gear.SortieEarring = { name = "春日耳飾り+1", augments = { 'System: 1 ID: 1676 Val: 0', 'Accuracy+13', 'Mag. Acc.+13', 'Crit.hit rate+4', } }
 
-    -- sets
+    -- Sets
     --- Idle sets
     sets.idle = {
         ammo = "ストンチタスラム+1",
         head = "無の面",
-        body = "ＢＩロリカ+3",
-        hands = { name = "サクパタガントレ", augments = { 'Path: A', } },
-        legs = "ＢＩクウィス+3",
-        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
+        body = "サクロブレスト",
+        hands = { name = "ニャメガントレ", augments = { 'Path: B', } },
+        legs = "極春日板佩楯",
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "上級近衛騎士カラー",
         waist = "無の腰当",
-        left_ear = { name = "ズワゾピアス+1", augments = { 'Path: A', } },
+        left_ear = "エアバニピアス",
         right_ear = "インフューズピアス",
         left_ring = "シュネデックリング",
         right_ring = "ローラーリング",
@@ -41,15 +42,15 @@ function init_gear_sets()
     --- Engaged Sets
     sets.engaged = {
         ammo = { name = "コイストボダー", augments = { 'Path: A', } },
-        head = "ＢＩマスク+3",
-        body = "ＢＩロリカ+3",
-        hands = { name = "サクパタガントレ", augments = { 'Path: A', } },
-        legs = "ＢＩクウィス+3",
-        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
-        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        head = "極春日烏帽子形兜",
+        body = "極春日胴丸",
+        hands = { name = "楯無篭手改", augments = { 'Path: A', } },
+        legs = "極春日板佩楯",
+        feet = { name = "楯無脛当", augments = { 'Path: A', } },
+        neck = "月光の喉輪",
         waist = "イオスケハベルト+1",
         left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
-        right_ear = gear.SortieEarring,
+        right_ear = "ディグニタリピアス",
         left_ring = "シーリチリング+1",
         right_ring = "シーリチリング+1",
         back = gear.AmbusMantle.AADA
@@ -58,39 +59,25 @@ function init_gear_sets()
     --- Defence Sets
     sets.defense.PDT = {
         ammo = "ストンチタスラム+1",
-        head = "ＢＩマスク+3",
+        head = { name = "ニャメヘルム", augments = { 'Path: B', } },
         body = "アダマンアーマー",
-        hands = "ＡＧマフラ+3",
-        legs = "サクパタクウィス",
-        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
+        hands = { name = "ニャメガントレ", augments = { 'Path: B', } },
+        legs = { name = "ニャメフランチャ", augments = { 'Path: B' } },
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "上級近衛騎士カラー",
         waist = "イオスケハベルト+1",
-        left_ear = { name = "ズワゾピアス+1", augments = { 'Path: A', } },
-        right_ear = "スリオスイヤリング",
-        left_ring = "シーリチリング+1",
+        left_ear = "エアバニピアス",
+        right_ear = { name = "オノワイヤリング+1", augments = { 'Path: A', } },
+        "",
+        left_ring = { name = "ゼラチナスリング+1", augments = { 'Path: A', } },
         right_ring = "フォテファイリング",
         back = gear.AmbusMantle.AADA
     }
 
-    sets.defense.MDT = {
-        ammo = "ストンチタスラム+1",
-        head = { name = "サクパタヘルム", augments = { 'Path: A', } },
-        body = "アダマンアーマー",
-        hands = { name = "サクパタガントレ", augments = { 'Path: A', } },
-        legs = "サクパタクウィス",
-        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
-        neck = { name = "ウォーダチャーム+1", augments = { 'Path: A', } },
-        waist = "イオスケハベルト+1",
-        left_ear = "エアバニピアス+1",
-        right_ear = { name = "オノワイヤリング+1", augments = { 'Path: A', } },
-        left_ring = "ヴェクサーリング+1",
-        right_ring = "ヴェクサーリング+1",
-        back = gear.AmbusMantle.AADA
-    }
+    sets.defense.MDT = sets.defense.PDT
 
     -- Fast Cast Sets
     sets.precast.FC = set_combine(sets.precast.FC, {
-        head = { name = "サクパタヘルム", augments = { 'Path: A', } },
         body = "サクロブレスト",
     })
 
@@ -98,23 +85,18 @@ function init_gear_sets()
     -- TODO
 
     -- Abillities
-    sets.precast.JA['マイティストライク'] = { hands = "ＡＧマフラ+3" }
-    sets.precast.JA['バーサク'] = { body = "ＰＭロリカ+2", feet = "ＡＧカリガ+3", back = "シコルマント" }
-    sets.precast.JA['ディフェンダー'] = { hands = "ＡＧマフラ+3" }
-    sets.precast.JA['ウォークライ'] = { head = "ＡＧマスク+4" }
-    sets.precast.JA['アグレッサー'] = { body = "アゴージロリカ" }
-    sets.precast.JA['トマホーク'] = { ammo = "Ｔ．トマホーク", feet = "ＡＧカリガ+3" }
-    sets.precast.JA['ブラッドレイジ'] = { body = "ＢＩロリカ+3" }
+    sets.precast.JA['護摩の守護円'] = { head = "真脇戸桃形兜" }
+    sets.precast.JA['黙想'] = { head = "真脇戸桃形兜", back = gear.AmbusMantle.AADA }
 
     -- WeapinSkills
     sets.precast.WS.melee = {
         ammo = "ノブキエリ",
-        head = "ＡＧマスク+4",
+        head = { name = "ニャメヘルム", augments = { 'Path: B', } },
         body = { name = "ニャメメイル", augments = { 'Path: B', } },
-        hands = "ＢＩマフラ+3",
-        legs = "ＢＩクウィス+3",
+        hands = "極春日筒篭手",
+        legs = { name = "ニャメフランチャ", augments = { 'Path: B' } },
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
-        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        neck = "共和プラチナ章",
         waist = { name = "セールフィベルト+1", augments = { 'Path: A' } },
         left_ear = gear.MoonshadeEarring,
         right_ear = "スラッドピアス",
@@ -123,21 +105,10 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
-    sets.precast.WS.melee_critical = {
-        ammo = "イェットシーラ+1",
-        head = "ＡＧマスク+4",
-        body = { name = "ニャメメイル", augments = { 'Path: B', } },
-        hands = "ＢＩマフラ+3",
-        legs = { name = "ニャメフランチャ", augments = { 'Path: B' } },
-        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
-        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
-        waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
-        left_ear = gear.MoonshadeEarring,
-        right_ear = "スラッドピアス",
-        left_ring = "コーネリアリング",
-        right_ring = "王将の指輪",
-        back = gear.AmbusMantle.WSSTR
-    }
+    sets.precast.WS.melee_critical = set_combine(sets.precast.WS.melee, {
+        left_ear = "スラッドピアス",
+        right_ear = gear.SortieEarring
+    })
 
     sets.precast.WS.melee_multi = {
         ammo = { name = "コイストボダー", augments = { 'Path: A', } },
@@ -146,10 +117,10 @@ function init_gear_sets()
         hands = { name = "ニャメガントレ", augments = { 'Path: B', } },
         legs = { name = "ニャメフランチャ", augments = { 'Path: B' } },
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
-        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        neck = "フォシャゴルゲット",
         waist = { name = "セールフィベルト+1", augments = { 'Path: A', } },
         left_ear = gear.MoonshadeEarring,
-        right_ear = gear.SortieEarring,
+        right_ear = "ブルタルピアス",
         left_ring = "コーネリアリング",
         right_ring = "ニックマドゥリング",
         back = gear.AmbusMantle.AADA
@@ -157,17 +128,17 @@ function init_gear_sets()
 
     sets.precast.WS.melee_debuf = {
         ammo = "ペムフレドタスラム",
-        head = "ＢＩマスク+3",
-        body = "ＢＩロリカ+3",
-        hands = "ＢＩマフラ+3",
-        legs = "ＢＩクウィス+3",
-        feet = "ＢＩカリガ+3",
+        head = "極春日烏帽子形兜",
+        body = "極春日胴丸",
+        hands = "極春日筒篭手",
+        legs = "極春日板佩楯",
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "無の喉輪",
         waist = "無の腰当",
         left_ear = gear.MoonshadeEarring,
         right_ear = gear.SortieEarring,
-        left_ring = "コーネリアリング",
-        right_ring = { name = "メタモルリング+1", augments = { 'Path: A', } },
+        left_ring = { name = "メタモルリング+1", augments = { 'Path: A', } },
+        right_ring = "スティキニリング+1",
         back = "無の外装"
     }
 
@@ -203,18 +174,30 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
+    sets.precast.WS.hybrid_melee = {
+        ammo = "ノブキエリ",
+        head = { name = "ニャメヘルム", augments = { 'Path: B', } },
+        body = { name = "ニャメメイル", augments = { 'Path: B', } },
+        hands = { name = "ニャメガントレ", augments = { 'Path: B', } },
+        legs = { name = "ニャメフランチャ", augments = { 'Path: B', } },
+        feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
+        neck = "フォシャゴルゲット",
+        waist = "オルペウスサッシュ",
+        left_ear = gear.MoonshadeEarring,
+        right_ear = gear.SortieEarring,
+        left_ring = "コーネリアリング",
+        right_ring = "エパミノダスリング",
+        back = gear.AmbusMantle.WSSTR
+    }
+
     sets.precast.WS.subtleblow = {
         neck = { name = "バーシチョーカー+1", augments = { 'Path: A', } },
         waist = "ニヌルタサッシュ",
-        right_ear = gear.SortieEarring,
         left_ring = "シーリチリング+1",
         right_ring = "シーリチリング+1",
     }
-    -- T
 
-    --共通WS定義読み込み
     set_default_ws_sets()
 
-    -- 個別WS定義
-    sets.precast.WS["アップヒーバル"].Normal = set_combine(sets.precast.WS.melee, { back = gear.AmbusMantle.WSVIT })
+    -- Custom Weapon Skill Sets
 end

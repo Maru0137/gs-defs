@@ -204,14 +204,13 @@ function init_gear_sets()
         back = gear.AmbusMantle.WSSTR
     }
 
-    sets.precast.WS.subtleblow = {
-        neck = { name = "バーシチョーカー+1", augments = { 'Path: A', } },
-        waist = "ニヌルタサッシュ",
-        right_ear = gear.SortieEarring,
-        left_ring = "シーリチリング+1",
-        right_ring = "シーリチリング+1",
-    }
-    -- T
+    sets.precast.WS.subtleblow = set_combine(
+        sets.precast.WS.melee,
+        sets.precast.SubtleBlow, {
+            right_ear = gear.SortieEarring,
+            left_ring = "シーリチリング+1",
+            right_ring = "シーリチリング+1",
+        })
 
     --共通WS定義読み込み
     set_default_ws_sets()
