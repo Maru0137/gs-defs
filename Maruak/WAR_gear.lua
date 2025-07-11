@@ -233,4 +233,8 @@ function init_gear_sets()
 
     -- 個別WS定義
     sets.precast.WS["アップヒーバル"].Normal = set_combine(sets.precast.WS.melee, { back = gear.AmbusMantle.WSVIT })
+    sets.precast.WS["サンギンブレード"].Normal = set_combine(sets.precast.WS.magical, {
+        head = "妖蟲の髪飾り+1",
+        right_ring = "アルコンリング",
+    })
 end

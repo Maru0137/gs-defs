@@ -94,8 +94,8 @@ function set_elemental_gear(spell)
     else
         gear.ElementalObiOrOrpheus.name = gear.OrpheusSash.name
     end
-    add_to_chat(123, "ElementalObiOrOrpheus:" .. tostring(gear.ElementalObiOrOrpheus.name))
+    -- add_to_chat(123, "ElementalObiOrOrpheus:" .. tostring(gear.ElementalObiOrOrpheus.name))
 
     gear.ElementalObiOrSkrymir.name = get_elemental_obi(spell.element) or gear.SkrymirCord.name
-    add_to_chat(123, "ElementalObiOrSkrymir:" .. tostring(gear.ElementalObiOrSkrymir.name))
+    -- add_to_chat(123, "ElementalObiOrSkrymir:" .. tostring(gear.ElementalObiOrSkrymir.name))
 end
