@@ -121,4 +121,6 @@ function define_global_sets()
 
     -- Others
     gear.MoonshadeEarring = { name = "胡蝶のイヤリング", augments = { '"Mag.Atk.Bns."+4', 'TP Bonus +250', } }
+    gear.OrpheusSash = "オルペウスサッシュ"
+    gear.SkrymirCord = "エスカンストーン"
 end

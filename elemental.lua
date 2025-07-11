@@ -99,3 +99,12 @@ function is_elemental_weapon_skill(spell)
     add_to_chat(122, spell.action_type)
     return spell.type == 'WeaponSkill' and spell.element
 end
+
+function set_elemental_gear(spell)
+    if elemental_obi_is_better_than_orpheus(spell.element) then
+        gear.ElemntalObiOrOrpheus = get_elemental_obi(spell.element) or gear.OrpheusSash
+    else
+        gear.ElemntalObiOrOrpheus = gear.OrpheusSash
+    end
+    gear.ElementalObiOrSkrymir = get_elemental_obi(spell.element) or gear.SkrymirCord
+end

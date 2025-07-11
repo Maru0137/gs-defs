@@ -269,9 +269,9 @@ function init_custom_spell_map()
         ['いやしの風']='BlueHealing',['マジックフルーツ']='BlueHealing',['P.エンブレイス']='BlueHealing',['花粉']='BlueHealing',['レストラル']='BlueHealing',['ホワイトウィンド']='BlueHealing',['ワイルドカロット']='BlueHealing',['虚無の風']='BlueHealing',['イグジュビエーション']='BlueHealing',
         --強化系青魔法
         ['N.メディテイト']='BlueBuff',['エラチックフラッター']='BlueBuff',['カウンタースタンス']='BlueBuff',['カルカリアンヴァーヴ']='BlueBuff',['コクーン']='BlueBuff',['セイリーンコート']='BlueBuff',['ゼファーマント']='BlueBuff',['ねたみ種']='BlueBuff',['バッテリーチャージ']='BlueBuff',['ファンタッド']='BlueBuff',['フェザーバリア']='BlueBuff',['プラズマチャージ']='BlueBuff',['ポーラーブルワーク']='BlueBuff',['マイティガード']='BlueBuff',['メメントモーリ']='BlueBuff',['リジェネレーション']='BlueBuff',['リフュエリング']='BlueBuff',['ワームアップ']='BlueBuff',['牙門']='BlueBuff',['共鳴']='BlueBuff',['鯨波']='BlueBuff',['甲羅強化']='BlueBuff',['反応炉冷却']='BlueBuff',['金剛身']='BlueBuff',['マジックバリア']='BlueBuff',['メタルボディ']='BlueBuff',['オカルテーション']='BlueBuff',
-        }
+    }
 
-        bp_spell_maps = {
+    bp_spell_maps = {
         --召喚履行
         ['シアリングライト'] = 'AvatarMagicalPacts',['ルビーの癒し'] = 'AvatarCure',['ポイズンネイル'] = 'AvatarPhysicalPacts',['ルビーの輝き'] = 'AvatarBuffWard',['ルビーの煌き'] = 'AvatarBuffWard',
         ['プチメテオ'] = 'AvatarMagicalPacts',['ルビーの癒しII'] = 'AvatarCure',['ホーリーミスト'] = 'AvatarMagicalPacts',['ルビーの安らぎ'] = 'AvatarBuffWard',['ルビーの贖罪'] = 'AvatarBuffWard',
@@ -407,6 +407,9 @@ end
 
 
 function init_gears()
+    gear.ElementalObiOrOrpheus = {}
+    gear.ElementalObiOrSkrymir = {}
+
     gear.AmbusMantle = {}
     gear.LaiveMantle = {}
 end

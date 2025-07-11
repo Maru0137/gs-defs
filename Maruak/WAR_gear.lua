@@ -196,7 +196,7 @@ function init_gear_sets()
         legs = { name = "ニャメフランチャ", augments = { 'Path: B', } },
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "ベーテルペンダント",
-        waist = "オルペウスサッシュ",
+        waist = gear.ElemntalObiOrOrpheus,
         left_ear = gear.MoonshadeEarring,
         right_ear = "フリオミシピアス",
         left_ring = "コーネリアリング",
