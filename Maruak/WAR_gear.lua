@@ -56,6 +56,23 @@ function init_gear_sets()
         back = gear.AmbusMantle.AADA
     }
 
+    sets.engaged['Laphria'] = {
+        ammo = { name = "コイストボダー", augments = { 'Path: A', } },
+        head = { name = "サクパタヘルム", augments = { 'Path: A', } },
+        body = "ＢＩロリカ+3",
+        hands = { name = "サクパタガントレ", augments = { 'Path: A', } },
+        legs = "ＡＧクウィス+4",
+        feet = { name = "サクパタレギンス", augments = { 'Path: A', } },
+        neck = { name = "戦士の数珠+2", augments = { 'Path: A', } },
+        waist = "イオスケハベルト+1",
+        left_ear = { name = "シェレピアス", augments = { 'Path: A', } },
+        right_ear = gear.SortieEarring,
+        left_ring = "シーリチリング+1",
+        right_ring = "シーリチリング+1",
+        back = gear.AmbusMantle.AADA
+    }
+
+
     --- Defence Sets
     sets.defense.PDT = {
         ammo = "ストンチタスラム+1",
