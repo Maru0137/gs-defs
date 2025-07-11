@@ -165,7 +165,7 @@ function init_gear_sets()
         legs = { name = "ニャメフランチャ", augments = { 'Path: B', } },
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "ベーテルペンダント",
-        waist = gear.ElemntalObiOrOrpheus,
+        waist = gear.ElementalObiOrOrpheus,
         left_ear = gear.MoonshadeEarring,
         right_ear = "フリオミシピアス",
         left_ring = "コーネリアリング",
@@ -181,7 +181,7 @@ function init_gear_sets()
         legs = { name = "ニャメフランチャ", augments = { 'Path: B', } },
         feet = { name = "ニャメソルレット", augments = { 'Path: B', } },
         neck = "フォシャゴルゲット",
-        waist = gear.ElemntalObiOrOrpheus,
+        waist = gear.ElementalObiOrOrpheus,
         left_ear = gear.MoonshadeEarring,
         right_ear = gear.SortieEarring,
         left_ring = "コーネリアリング",
@@ -196,10 +196,4 @@ function init_gear_sets()
     set_default_ws_sets()
 
     -- Custom Weapon Skill Sets
-end
-
-function job_post_midcast(spell, action, spellMap, eventArgs)
-    if is_elemental_magic_affedted_by_whether(spell, spellMap) then
-        equip(get_elemental_obi(spell.element))
-    end
 end

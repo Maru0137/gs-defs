@@ -36,18 +36,8 @@ end
 function user_post_precast(spell, action, spellMap, eventArgs)
 end
 
-function set_elemental_gear(spell)
-    if is_elemental_weapon_skill(spell) and elemental_obi_is_better_than_orpheus(spell.element) then
-        equip(get_elemental_obi(spell.element))
-    end
-end
-
-
 --■■■アクション中処理
 function user_post_midcast(spell, action, spellMap, eventArgs)
-    if is_elemental_magic_affedted_by_whether(spell, spellMap) then
-        equip(get_elemental_obi(spell.element))
-    end
 end
 
 
@@ -407,8 +397,8 @@ end
 
 
 function init_gears()
-    gear.ElementalObiOrOrpheus = {}
-    gear.ElementalObiOrSkrymir = {}
+    gear.ElementalObiOrOrpheus = { name = "" }
+    gear.ElementalObiOrSkrymir = { name = "" }
 
     gear.AmbusMantle = {}
     gear.LaiveMantle = {}

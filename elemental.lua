@@ -102,9 +102,12 @@ end
 
 function set_elemental_gear(spell)
     if elemental_obi_is_better_than_orpheus(spell.element) then
-        gear.ElemntalObiOrOrpheus = get_elemental_obi(spell.element) or gear.OrpheusSash
+        gear.ElementalObiOrOrpheus.name = get_elemental_obi(spell.element) or gear.OrpheusSash.name
     else
-        gear.ElemntalObiOrOrpheus = gear.OrpheusSash
+        gear.ElementalObiOrOrpheus.name = gear.OrpheusSash.name
     end
-    gear.ElementalObiOrSkrymir = get_elemental_obi(spell.element) or gear.SkrymirCord
+    add_to_chat(123, "ElementalObiOrOrpheus:" .. tostring(gear.ElementalObiOrOrpheus.name))
+
+    gear.ElementalObiOrSkrymir.name = get_elemental_obi(spell.element) or gear.SkrymirCord.name
+    add_to_chat(123, "ElementalObiOrSkrymir:" .. tostring(gear.ElementalObiOrSkrymir.name))
 end
