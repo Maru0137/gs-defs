@@ -95,5 +95,7 @@ function is_elemental_magic_affedted_by_whether(spell, spell_map)
 end
 
 function is_elemental_weapon_skill(spell)
-    return spell.action_type == 'WeaponSkill' and spell.element
+    add_to_chat(122, spell.element)
+    add_to_chat(122, spell.action_type)
+    return spell.type == 'WeaponSkill' and spell.element
 end

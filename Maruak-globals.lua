@@ -1,4 +1,4 @@
-function define_global_gears()
+function define_global_sets()
     -- Hand to hand
     gear.Tokkosho = "独鈷杵"
     gear.GodHand = { name = "ゴッドハンド", augments = { 'Path: A', } }

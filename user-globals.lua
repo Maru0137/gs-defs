@@ -34,10 +34,14 @@ end
 
 --■■■アクション前処理（共通実装なし）
 function user_post_precast(spell, action, spellMap, eventArgs)
+end
+
+function set_elemental_gear(spell)
     if is_elemental_weapon_skill(spell) and elemental_obi_is_better_than_orpheus(spell.element) then
         equip(get_elemental_obi(spell.element))
     end
 end
+
 
 --■■■アクション中処理
 function user_post_midcast(spell, action, spellMap, eventArgs)
@@ -54,10 +58,7 @@ end
 
 --■■■バフデバフ変更時の共通処理
 function user_buff_change(buff, gain)
-    if state.Buff['睡眠'] then
-        equip({main=gear.Slip})
-        equip({range=gear.Slip})
-    elseif buff == "ファランクス" and not gain then
+    if buff == "ファランクス" and not gain then
         windower.add_to_chat(167,'■■■ ファランクス切れ ■■■')
     elseif buff == "八双" and not gain then
         windower.add_to_chat(167,'■■■ 八双切れ ■■■')

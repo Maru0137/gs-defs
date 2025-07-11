@@ -197,3 +197,9 @@ function init_gear_sets()
 
     -- Custom Weapon Skill Sets
 end
+
+function job_post_midcast(spell, action, spellMap, eventArgs)
+    if is_elemental_magic_affedted_by_whether(spell, spellMap) then
+        equip(get_elemental_obi(spell.element))
+    end
+end
